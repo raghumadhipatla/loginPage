@@ -1,0 +1,34 @@
+---
+- name: Install Google Chrome
+
+  hosts: your_target_host
+
+  become: yes  # Use sudo to become a privileged user
+
+ 
+
+  tasks:
+
+    - name: Add Google Chrome repository
+
+      apt_repository:
+
+repo: "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"
+
+        state: present
+
+        filename: google-chrome
+
+        update_cache: yes
+
+        cache_valid_time: 3600
+
+ 
+
+    - name: Install Google Chrome
+
+      apt:
+
+        name: google-chrome-stable
+
+        state: present
